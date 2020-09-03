@@ -1,43 +1,69 @@
 package com.example.RecipeApplication.model;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class Recipe {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long R_id;
-    private String R_name;
+    private int id;
+    private String name;
+    private String Ingredients;
     private String Description;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private Set<Ingredient> ingredients = new HashSet<>( );
-    public Recipe(){
+    public Recipe() {
 
     }
 
-    public Recipe(long r_id, String r_name, String description) {
-        this.R_id = r_id;
-        this.R_name = r_name;
-        this.Description = description;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Recipe)) return false;
+        Recipe recipe = (Recipe) o;
+        return getId() == recipe.getId() &&
+                Objects.equals( getName(), recipe.getName() ) &&
+                Objects.equals( getIngredients(), recipe.getIngredients() ) &&
+                Objects.equals( getDescription(), recipe.getDescription() );
     }
 
-    public long getR_id() {
-        return R_id;
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", Ingredients='" + Ingredients + '\'' +
+                ", Directions='" + Description + '\'' +
+                '}';
     }
 
-    public void setR_id(long r_id) {
-        this.R_id = r_id;
+    public int getId() {
+        return id;
     }
 
-    public String getR_name() {
-        return R_name;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setR_name(String r_name) {
-        this.R_name = r_name;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getIngredients() {
+        return Ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        Ingredients = ingredients;
     }
 
     public String getDescription() {
@@ -45,9 +71,6 @@ public class Recipe {
     }
 
     public void setDescription(String description) {
-        this.Description = description;
+        Description = description;
     }
 }
-
-
-

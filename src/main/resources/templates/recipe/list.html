@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipes</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body class="container">
+
+<div class="jumbotron">
+    <h1>Cooking Recipes </h1>
+
+
+
+<h3>All IN One!</h3>
+<table border="1" class="table">
+    <tr>
+        <th scope="row">ID</th>
+        <th scope="row">name</th>
+        <th scope="row">Ingredients</th>
+        <th scope="row">Description</th>
+    </tr>
+
+    <tr th:each="recipe: ${recipes}">
+        <td th:text="${recipe.id}">112</td>
+        <td th:text="${recipe.name}"></td>
+        <td th:text="${recipe.ingredients}"></td>
+        <td th:text="${recipe.description}"></td>
+    </tr>
+</table>
+</div>
+
+<div>
+    <center><a href="/addRecipe" class="btn btn-primary">Add Recipe</a></center>
+
+</div>
+
+</body>
+</html>
